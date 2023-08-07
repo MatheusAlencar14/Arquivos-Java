@@ -8,20 +8,29 @@ public class ProgramFile {
 
     public static void main(String[] args) {
 
-        File file = new File("c:\\temp\\in.txt");
-        Scanner sc = null;
+        Scanner sc = new Scanner(System.in);
 
-        try {
-            sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                System.out.println(sc.nextLine());
-            }
-        } catch (IOException e) {
-            System.out.println("Erro: " + e.getMessage());
-        } finally {
-            if (sc != null) {
-                sc.close();
-            }
+        System.out.print("Digite o caminho da pasta: ");
+        String strPath = sc.nextLine();
+
+        File path = new File(strPath);
+
+        File[] folders = path.listFiles(File::isDirectory);
+        System.out.println("Pastas: ");
+        for (File folder : folders) {
+            System.out.println(folder);
         }
+
+        File[] files = path.listFiles(File::isFile);
+        System.out.println("Arquivos: ");
+        for (File file : files) {
+            System.out.println(file);
+        }
+
+        boolean sucesso = new File(strPath + "\\subpasta").mkdir();
+
+        System.out.println("Nova pasta criada com sucesso: " + sucesso);
+
+        sc.close();
     }
 }
