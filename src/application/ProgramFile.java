@@ -1,5 +1,6 @@
 package application;
 
+import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,21 +16,12 @@ public class ProgramFile {
 
         File path = new File(strPath);
 
-        File[] folders = path.listFiles(File::isDirectory);
-        System.out.println("Pastas: ");
-        for (File folder : folders) {
-            System.out.println(folder);
-        }
-
-        File[] files = path.listFiles(File::isFile);
-        System.out.println("Arquivos: ");
-        for (File file : files) {
-            System.out.println(file);
-        }
-
-        boolean sucesso = new File(strPath + "\\subpasta").mkdir();
-
-        System.out.println("Nova pasta criada com sucesso: " + sucesso);
+        //Somente o nome do arquivo, sem o caminho
+        System.out.println("getName: " + path.getName());
+        //Somente o caminho do arquivo, sem o nome
+        System.out.println("getParent: " + path.getParent());
+        //Completo, com caminho e nome do arquivo
+        System.out.println("getPath: " + path.getPath());
 
         sc.close();
     }
